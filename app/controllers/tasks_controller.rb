@@ -3,13 +3,16 @@ class TasksController < ApplicationController
   
   
   def index
-    @tasks = Task.all
+    @tasks = Task.all.page(params[:page])
   end
+  
   def show
   end
+  
   def new
     @task = Task.new
   end
+  
   def create
     @task = Task.new(task_params)
     if @task.save
@@ -20,8 +23,10 @@ class TasksController < ApplicationController
       render :new
     end
   end
+  
   def edit
   end
+  
   def update
     if @task.update(task_params)
       flash[:success] ='taskが正常に更新されました'
