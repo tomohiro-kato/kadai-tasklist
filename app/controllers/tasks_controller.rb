@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
   def index
     @tasks = Task.all.page(params[:page])
+    @p = params[:test]
   end
   
   def show
